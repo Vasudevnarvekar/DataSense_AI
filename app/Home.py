@@ -43,6 +43,17 @@ st.title("📊 DataSense AI")
 st.write("Upload a CSV or Excel file to begin analysis.")
 
 # ---------------------------------------------------
+# Upload New Dataset Button
+# ---------------------------------------------------
+
+if "df" in st.session_state:
+    if st.button("🗑️ Load New Dataset"):
+        for key in ["df", "cleaned_df", "file_name"]:
+            st.session_state.pop(key, None)
+
+        st.rerun()
+
+# ---------------------------------------------------
 # File Upload
 # ---------------------------------------------------
 
@@ -59,7 +70,22 @@ if uploaded_file is not None:
 
     df = load_file(uploaded_file)
 
-    st.success("✅ File uploaded successfully!")
+    # Store dataset
+    st.session_state["df"] = df
+    st.session_state["cleaned_df"] = df.copy()
+    st.session_state["file_name"] = uploaded_file.name
+
+# ---------------------------------------------------
+# Display Dataset
+# ---------------------------------------------------
+
+if "df" in st.session_state:
+
+    df = st.session_state["df"]
+
+    st.success(
+        f"✅ Dataset Loaded: {st.session_state.get('file_name', 'Uploaded File')}"
+    )
 
     show_dataset_preview(df)
     show_dataset_overview(df)
@@ -67,3 +93,6 @@ if uploaded_file is not None:
     show_statistics(df)
     show_quality(df)
     show_ai_recommendations(df)
+
+else:
+    st.info("👆 Please upload a CSV or Excel file to begin.")
