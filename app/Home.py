@@ -24,6 +24,7 @@ from app.components.schema import show_schema
 from app.components.statistics import show_statistics
 from app.components.quality import show_quality
 from app.components.recommendations import show_ai_recommendations
+from app.components.visualizations import show_visualizations
 
 # ---------------------------------------------------
 # Streamlit Configuration
@@ -93,6 +94,7 @@ if "df" in st.session_state:
     show_statistics(df)
     show_quality(df)
     show_ai_recommendations(df)
+    show_visualizations(df)
 
 else:
     st.info("👆 Please upload a CSV or Excel file to begin.")
