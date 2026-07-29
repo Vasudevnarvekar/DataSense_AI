@@ -62,11 +62,26 @@ st.write("Upload a CSV or Excel file to begin analysis.")
 
 if "df" in st.session_state:
     if st.button("🗑️ Load New Dataset"):
-        for key in ["df", "cleaned_df", "file_name"]:
+
+        keys_to_clear = [
+            # Dataset
+            "df",
+            "cleaned_df",
+            "file_name",
+
+            # Step 10 - AutoML
+            "target_column",
+            "feature_columns",
+            "problem_type",
+            "trained_models",
+            "best_model",
+            "model_results",
+        ]
+
+        for key in keys_to_clear:
             st.session_state.pop(key, None)
 
         st.rerun()
-
 # ---------------------------------------------------
 # File Upload
 # ---------------------------------------------------
