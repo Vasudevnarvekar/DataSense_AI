@@ -1,16 +1,29 @@
-.venv/
+# Python
 __pycache__/
 *.pyc
 
+# Virtual Environment
+.venv/
+
+# Environment Variables
 .env
 
+# Uploads & Reports
 uploads/
 reports/
 
+# Jupyter
 .ipynb_checkpoints/
 
+# IDE
 .vscode/
-
 .idea/
 
+# Logs
 *.log
+
+
+.pytest_cache/
+.streamlit/cache/
+*.pkl
+*.joblib
